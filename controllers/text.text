@@ -1,0 +1,16 @@
+const Login=async (req,res)=>{
+    let pwdlogin=req.body.password.toString();
+    let emaillog=req.body.email;
+    const checkemailexit= await usersm.findOne({
+        email:emaillog
+    })
+        if(checkemailexit){
+            const comparepwd= await bcrypt.compare(pwdlogin,checkemailexit.password)
+            if(!comparepwd){
+                res.send("password incorect")
+            }else{
+                res.send('user existe')
+            }
+        }
+        res.send("email or password incorrect")
+}
