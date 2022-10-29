@@ -7,10 +7,10 @@ function verifiertoken(data){
         if(locltorage('tokene')){
             const verftoken=jwt.verify(locltorage('tokene'),process.env.TOKEN_SECRET)
             if(verftoken){
-                if(data.includes(verftoken.checkuser.role)){
+                if(data.includes(verftoken.checkuser.role[0])){
                     next()
                 }else{
-                    res.send("access denied")
+                    res.send("access deaid !!!!!!!!!!!!!!!!!")
                 }
             }else{
                 res.send("token inavalid")
@@ -21,6 +21,7 @@ function verifiertoken(data){
     }
 }
 module.exports={verifiertoken}
+
 
 
 

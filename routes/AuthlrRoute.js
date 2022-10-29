@@ -4,16 +4,23 @@ const router=express.Router();
 const veriftoken=require('../verifitoken')
 const nodemail=require('../nodemailer')
 
+const Role_Client=process.env.Role_Client
+const Role_Manger=process.env.Role_Client
+const Role_Livreur=process.env.Role_Client
+
 
 router.post('/register',Register);
 router.post('/login',Login);
 router.post('/resitpassword',RsitePassword);
 // midlllllllwair
-router.get('/client',veriftoken.verifiertoken(['client']),(req,res)=>{
+router.get('/client',veriftoken.verifiertoken([Role_Client]),(req,res)=>{
     res.send("hello Client")
 });
-router.get('/livreure',veriftoken.verifiertoken(['livreure']),(req,res)=>{
+router.get('/livreure',veriftoken.verifiertoken([Role_Livreur]),(req,res)=>{
     res.send("hello livreure")
+})
+router.get('/manager',veriftoken.verifiertoken([Role_Manger]),(req,res)=>{
+    res.send("hello manager ")
 })
 router.get('/*',(req,res)=>{
     res.send("erooore de access a cette page")

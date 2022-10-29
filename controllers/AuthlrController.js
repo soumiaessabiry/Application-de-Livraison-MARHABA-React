@@ -7,6 +7,9 @@ const locltorage=require('local-storage')
 const jwt=require('jsonwebtoken')
 const env=require('dotenv')
 const nodemail=require('../nodemailer')
+const Role_Client=process.env.Role_Client
+const Role_Manger=process.env.Role_Client
+const Role_Livreur=process.env.Role_Client
 
 //**register**/
 const Register=async (req,res)=>{
@@ -25,7 +28,7 @@ const Register=async (req,res)=>{
         username:req.body.username,
         email:req.body.email,
         password:hachpassword,
-        role:'635bf9666ebe7a0eac7494ec'
+        role:Role_Client
     })
     // save user
     const saveuser=await InsertUser.save()
@@ -90,6 +93,7 @@ const RsitePassword= async(req,res)=>{
         res.send("user makaynch")
     }
 }
+// creat role
 const InsertRole=new rolesm({
     name:'Manger'
 })
